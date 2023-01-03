@@ -11,16 +11,16 @@ $project_dir=$pwd.Path
 Set-Location $script_dir
 
 if($project_name -eq "help"){
-	Write-Host "win_init.ps1 project_name init_repo dir_loc"
-	exit 1
+    Write-Host "win_init.ps1 project_name init_repo dir_loc"
+    exit 1
 }
 
 if($project_name.Length -gt 0){
-	$project_name_clean = $project_name -replace "-", "_"
+    $project_name_clean = $project_name -replace "-", "_"
 }
 else{
-	Write-Host "Script requires a project name as first argument."
-	exit 1
+    Write-Host "Script requires a project name as first argument."
+    exit 1
 }
 
 # Create folders
@@ -49,9 +49,9 @@ Copy-Item $script_dir/templates/setup.py.txt -Destination $project_dir/$project_
 (Get-Content $project_dir/$project_name/README.md).Replace("PROJECT_NAME",$project_name) | Set-Content $project_dir/$project_name/README.md
 
 if($init_repo -eq "true"){
-	Set-Location $project_dir/$project_name
-	git init -b main
-	git add -A
-	git commit -am "Initial commit."
-	gh repo create $project_name --private --source=. --push
+    Set-Location $project_dir/$project_name
+    git init -b main
+    git add -A
+    git commit -am "Initial commit."
+    gh repo create $project_name --private --source=. --push
 }
