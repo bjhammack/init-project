@@ -44,9 +44,9 @@ Copy-Item $script_dir/templates/setup.cfg.txt -Destination $project_dir/$project
 Copy-Item $script_dir/templates/setup.py.txt -Destination $project_dir/$project_name/setup.py
 
 # Replace template text in files
-(Get-Content $project_dir/$project_name/setup.cfg).Replace("PROJECT_NAME_CLEAN",$project_name_clean) | Set-Content $project_dir/$project_name/setup.cfg
-(Get-Content $project_dir/$project_name/setup.cfg).Replace("PROJECT_NAME",$project_name) | Set-Content $project_dir/$project_name/setup.cfg
-(Get-Content $project_dir/$project_name/README.md).Replace("PROJECT_NAME",$project_name) | Set-Content $project_dir/$project_name/README.md
+(Get-Content $project_dir/$project_name/setup.cfg).Replace("[PROJECT_NAME_CLEAN]",$project_name_clean) | Set-Content $project_dir/$project_name/setup.cfg
+(Get-Content $project_dir/$project_name/setup.cfg).Replace("[PROJECT_NAME]",$project_name) | Set-Content $project_dir/$project_name/setup.cfg
+(Get-Content $project_dir/$project_name/README.md).Replace("[PROJECT_NAME]",$project_name) | Set-Content $project_dir/$project_name/README.md
 
 if($init_repo -eq "true"){
     Set-Location $project_dir/$project_name
